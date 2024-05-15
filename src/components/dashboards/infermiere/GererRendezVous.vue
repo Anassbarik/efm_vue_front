@@ -37,24 +37,7 @@ export default{
         })
         return this.toggleStatus = !this.toggleStatus;
     },
-    async depChange(event){
-        this.department = event.target.value;  
-        await axios.get('http://localhost:8000/api/meddept',{params : {dep : this.department}})
-        .then(res =>  this.availableDocs = res.data.doctor)
-        .catch(err => {console.log(err)
-            this.availableDocs = []
-        })
-    },
-    docChange(event){
-      this.doctor = event.target.value;
-    },
-    salleChange(event){
-      this.salle = event.target.value;
 
-    },
-    dateChange(event){
-      this.date = event.target.value;
-    },
     async createRendezVous(){
          await axios.post('http://localhost:8000/api/appointments',{
           id_patient : this.rv.id_patient,
@@ -74,6 +57,7 @@ export default{
     <h1 class="mt-5 mb-5">Appointments</h1>
     <div class="card" v-for="app in appointments" :key="app.id">
   <div class="card-header">
+    <h1>Id: {{ app.id }}</h1>
     {{ app.name }}'s appointment  
   </div>
   <div class="card-body">
@@ -86,23 +70,23 @@ export default{
     
     <form v-if="toggleStatus" @submit.prevent="createRendezVous">
   
-      <select v-if="toggleStatus" v-model="department" name="department" id="department" @change="depChange" class="form-select mb-3" aria-label="Departments" >
+      <select v-if="toggleStatus" v-model="department" name="department" id="department" class="form-select mb-3" aria-label="Departments" >
         <option disabled selected value="" >Departments</option>
         <option value="ophthalmology">Ophthalmology</option>
         <option value="urology">Urology</option>
         <option value="cardiology">Cardiology</option>
         <option value="gynecology">Gynecology</option>
       </select>
-      <select v-if="toggleStatus" v-model="doctor" name="doctors" id="doctors" class="form-select mb-3" aria-label="Doctors" @change="docChange">
+      <select v-if="toggleStatus" v-model="doctor" name="doctors" id="doctors" class="form-select mb-3" aria-label="Doctors">
         <option disabled selected value="" >Doctors</option>    
         <option v-for="doctor in availableDocs" :key="doctor.id" :value="doctor.name">{{doctor.name}}</option>
       </select>
-      <select v-if="toggleStatus" v-model="salle" name="salles" id="salles" class="form-select mb-3" aria-label="Salles" @change="salleChange" >
+      <select v-if="toggleStatus" v-model="salle" name="salles" id="salles" class="form-select mb-3" aria-label="Salles"  >
         <option disabled selected value="" >Les salles</option>
         <option v-for="salle in salles" :key="salle.id" :value="salle.designation">{{salle.designation}}</option>
         
       </select>
-      <input v-if="toggleStatus" name="date" type="datetime-local" class="form-control mb-3" @change="dateChange"/>
+      <input v-if="toggleStatus" name="date" type="datetime-local" class="form-control mb-3" />
       <button v-if="toggleStatus" class="btn btn-success mb-3" >Confirm</button>
     </form>
       

@@ -16,7 +16,8 @@ export default{
         role: null,
         phone:null,
         address: null,
-        profession: null
+        profession: null,
+        department: null
       }
     }
   },
@@ -44,7 +45,7 @@ export default{
     // },
     async createUser(){
       await axios.get('http://localhost:8000/sanctum/csrf-cookie')
-        await axios.post('http://localhost:8000/register',{
+        await axios.post('http://localhost:8000/api/register',{
         name: this.form.name,
         email: this.form.email,
         password: this.form.password,
@@ -52,7 +53,8 @@ export default{
         role: this.form.role,
         phone: this.form.role,
         address: this.form.role,
-        profession: this.form.role,
+        profession: this.form.profession,
+        department: this.form.department,
       }).then(res => console.log(res.data))
       .catch(err => console.log(err))
     }
@@ -102,6 +104,11 @@ export default{
   <div class="col-md-6 mb-3">
     <div class="col-sm-10" v-if="form.role == 'medecin'">
       <input type="text" class="form-control" id="profession" name="profession" placeholder="profession" v-model="form.profession">
+    </div>
+  </div>
+  <div class="col-md-6 mb-3">
+    <div class="col-sm-10" v-if="form.role == 'medecin'">
+      <input type="text" class="form-control" id="profession" name="department" placeholder="department" v-model="form.department">
     </div>
   </div>
   <div class="col-md-6 mb-3">

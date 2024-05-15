@@ -44,8 +44,9 @@ export default{
 </script>
 <template>
     <div>
-      <h1>Your appointments MR {{ medecin && medecin.name }}</h1>
-      <RouterLink to=`/dashboards/medecin/${medecin.id}`>update your info</RouterLink>
+      <h1>Your appointments MR {{ medecin && medecin.name + medecin.id }}</h1>
+      
+      <RouterLink v-if="medecin" :to="`/dashboards/medecin/${medecin.id}`">update your info</RouterLink>
     </div>
     <RouterLink to="/">
         <div class="card" v-for="app in rvs" :key="app.id" >
