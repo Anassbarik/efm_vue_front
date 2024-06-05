@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios'
 import { RouterLink, RouterView } from 'vue-router'
+import NavBar from './components/header/NavBar.vue';
 
 axios.defaults.withCredentials = true
 axios.defaults.withXSRFToken = true
@@ -42,9 +43,8 @@ export default {
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
+  <!-- <header> -->
+    <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/test">Test</RouterLink>
         <RouterLink to="/medecins">Medecins</RouterLink>
@@ -56,15 +56,13 @@ export default {
         <form @submit.prevent="logOut">
           <button class="btn btn-danger">Log out</button>
         </form>
-      </nav>
-    </div>
-  </header>
-
+      </nav> -->
+     
+  <!-- </header> -->
+  
   <RouterView />
 </template>
 
 <style scoped>
-.wrapper nav {
-  text-align: center;
-}
+
 </style>

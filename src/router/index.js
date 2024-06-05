@@ -33,6 +33,12 @@ const router = createRouter({
       component: () => import('../views/RendezVousView.vue')
     },
     {
+      path: "/appointments",
+      name: "appointments",
+
+      component: () => import('../views/dashboards/AppsView.vue')
+    },
+    {
       path: '/dashboards/infermiere',
       name: 'infermiere',
 
@@ -54,19 +60,7 @@ const router = createRouter({
           status = err.response.status;
           next('/login');
       });
-        // if (status != 401) {
-        //   if (user && user.role === "infermiere") {
-        //     next();
-        //   } else{
-        //     next('/login');
-        //   }
-        // } else {
-        //   console.log('unauthenticated');
-        //   next('/login');
-        // }
-        
-          
-         
+      
       }
          
     },
@@ -153,6 +147,12 @@ const router = createRouter({
       component: () => import('../views/dashboards/AppointmentsView.vue')
     },
     {
+      path: '/dashboards/infermiere/rendezvous/:id',
+      name: 'showApp',
+
+      component: () => import('../views/dashboards/ShowAppView.vue')
+    },
+    {
       path: '/patients',
       name: 'patients',
 
@@ -163,6 +163,24 @@ const router = createRouter({
       name: 'login',
 
       component: () => import('../views/auth/LoginView.vue')
+    },
+    {
+      path: '/dashboards/rh/create',
+      name: 'create',
+
+      component: () => import('../views/auth/CreateView.vue')
+    },
+    {
+      path: '/dashboards/rh/medecin/:id',
+      name: 'rhMedecin',
+
+      component: () => import('../views/dashboards/rh/ShowMedecinView.vue')
+    },
+    {
+      path: '/dashboards/rh/infermier/:id',
+      name: 'rhInfermmier',
+
+      component: () => import('../views/dashboards/rh/ShowInfermierVue.vue')
     },
     {
       path: '/dashboards/rh/create',
