@@ -141,6 +141,12 @@ const router = createRouter({
       component: () => import('../views/dashboards/medecin/ShowMedView.vue'),
     },
     {
+      path: "/dashboards/calendar",
+      name: "calendar.vue",
+
+      component: () => import('../views/dashboards/medecin/calendar.vue'),
+    },
+    {
       path: '/dashboards/infermiere/rendezvous',
       name: 'appointments',
 
